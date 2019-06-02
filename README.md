@@ -1,1 +1,3 @@
-# this directory includes figure-making scripts
+Diploid assembly of the Cascade hop genome
+
+--> Deduplication and visualization scripts
