@@ -1,6 +1,7 @@
 ############################
 ##### buildMAFIndex.py #####
 ############################
+
 python buildMAFIndex.py lastzOutputFile.txt
 
 # lastzOutputFile.txt --> primaryContig_vs_associateContig.txt
@@ -17,6 +18,7 @@ python getAlignmentSequenceFromMAF.py lastzOutputFile.txt outputFileName primary
 #########################
 ##### splitFasta.py #####
 #########################
+
 python splitFasta.py seqFileList.txt
 
 # seqFileList.txt --> file list of all primaryContig_vs_associateContig.aligned.cds.fasta files
