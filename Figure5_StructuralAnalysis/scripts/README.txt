@@ -22,3 +22,20 @@ python createGapLenDistHist.py allAssociateContigGapRates.txt contigMap.txt
 
 python kimuraHistogram.py contigMap.txt	mafOutputFileList.txt
 
+##########################################
+##### getScatterDataFromHaplotigs.py #####
+##### getScatterDataFromHPCs.py ##########
+##########################################
+
+python getScatterDataFromHaplotigs.py extractedCDSFileList.txt  overlapFilteredContigMap.txt > haplotigScatterData.txt
+# extractedCDSFileList.txt --> from ExtractCDS pipeline composed of all primaryContig_vs_associateContig.aligned.cds.fasta files
+
+python getScatterDataFromHPCs.py extractedCDSFileList.txt  overlapFilteredContigMap.txt > hpcScatterData.txt
+
+##############################
+##### mutationScatter.py #####
+##############################
+
+python mutationScatter.py haplotigScatterData.txt hpcScatterData.txt 
+
+
