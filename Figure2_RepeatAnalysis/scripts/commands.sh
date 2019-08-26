@@ -1,0 +1,5 @@
+python scripts/createCombinedPieChart_v2.py sorted_modified_combinedMipsREdatRepMask_LTRharvestRepMask_GBrowse.gff 3711963939 arabidopsis.out 119668634 maize.out 2075000000 > pieChartRepeatStats.txt
+
+python scripts/createStackedBarChart.py sorted_modified_combinedMipsREdatRepMask_LTRharvestRepMask_GBrowse.gff 3711963939 arabidopsis.out 119668634 maize.out 2075000000 > percentRepeatStats.txt
+
+python plotLTRLengthBoxplot_v2.py hops.fasta.LTRlib.fa
