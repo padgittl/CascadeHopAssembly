@@ -1,2 +1,0 @@
-cp /nfs0/BB/Hendrix_Lab/Hops/version5/primary/CannabisSynteny/scripts/getAugustusSeqsWithCannabisHits_limitedSet.py getHopGeneModelSeqs.py
-cp /nfs0/BB/Hendrix_Lab/Hops/version5/primary/CannabisSynteny/scripts/getCannabisSeqsWithCannabisHits_limitedSet.py getCannabisGeneModelSeqs.py
