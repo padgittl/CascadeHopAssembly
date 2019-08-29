@@ -46,3 +46,17 @@ phyml -i allHits_noGaps.phy -d aa -m Blosum62 -c 4 -a e
 # output files --> allHits_noGaps.phy_phyml_stats.txt // allHits_noGaps.phy_phyml_tree.txt
 
 ##### create tree with createTree.py --> details in directory 'Figure4_Synteny/'
+
+################################################################################
+
+##### identify mutual best hits (MBH)
+
+# align hop and cannabis top hits to each other
+blastp -query hopHits.fasta -db cannabisHits.fasta -evalue 1e-5 -outfmt '6 std qcovs' -out hop_vs_cannabis.txt
+blastp -query cannabisHits.fasta -db hopHits.fasta -evalue 1e-5 -outfmt '6 std qcovs' -out cannabis_vs_hop.txt
+
+#####################
+##### getMBH.py #####
+#####################
+
+python getMBH.py hop_vs_cannabis.txt cannabis_vs_hop.txt > MBH.txt
