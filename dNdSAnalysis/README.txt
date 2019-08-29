@@ -15,7 +15,8 @@ python printSelectionRates.py processedExportAlignmentFile.fasta
 python getGeneHits.py overlapFilteredContigMap.txt all_dNdS_rateRatios.txt hopTopHits.txt ungappedCDSLenFile.txt > allGenesWithUniProtIDsAndDNDS.txt
 
 	# all_dNdS_rateRatios.txt is created by concatenating all gene-specific dN/dS files
- 	# all_dNdS_rateRatios.txt format --> primaryGeneID,haplotigGeneID,strand,nonSynonymousSubstitutions,nonSynonymousSites,pN,synSubstitutions,synSites,pS,dN,dS,dNdS 
+ 	# all_dNdS_rateRatios.txt format --> 
+	primaryGeneID,haplotigGeneID,strand,nonSynonymousSubstitutions,nonSynonymousSites,pN,synSubstitutions,synSites,pS,dN,dS,dNdS 
 
 	######################
 	### hopBestHits.py ###
