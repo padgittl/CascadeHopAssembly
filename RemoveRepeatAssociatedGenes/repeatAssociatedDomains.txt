@@ -1,0 +1,91 @@
+PF13612.5	Transposase DDE domain	
+PF12382.7	Retrotransposon peptidase	
+PF02281.15	Transposase Tn5 dimerisation domain	
+PF01610.16	Transposase	
+PF13586.5	Transposase DDE domain	
+PF14706.5	Transposase DNA-binding	
+PF02914.14	Bacteriophage Mu transposase	
+PF00607.19	gag gene protein p24 (core nucleocapsid protein)	
+PF14319.5	Transposase zinc-binding domain	
+PF04827.13	Plant transposon protein	
+PF01609.20	Transposase DDE domain	
+PF05699.13	hAT family C-terminal dimerisation region	
+PF01797.15	Transposase IS200 like	
+PF12776.6	Myb/SANT-like DNA-binding domain	
+PF13976.5	GAG-pre-integrase domain	
+PF02992.13	Transposase family tnp2	
+PF11427.7	Tc3 transposase	
+PF13007.6	Transposase C of IS166 homeodomain	
+PF13359.5	DDE superfamily endonuclease	
+PF07592.10	Rhodopirellula transposase DDE domain	
+PF08284.10	Retroviral aspartyl protease	
+PF12384.7	Ty3 transposon peptidase	
+PF03017.13	TNP1/EN/SPM transposase	
+PF13701.5	Transposase DDE domain group 1	
+PF12596.7	87kDa Transposase	
+PF00077.19	Retroviral aspartyl protease	
+PF13751.5	Transposase DDE domain	
+PF05598.10	Transposase domain (DUF772)	
+PF13966.5	zinc-binding in reverse transcriptase	
+PF12762.6	ISXO2-like transposase domain	
+PF03221.15	Tc5 transposase DNA-binding domain	
+PF00075.23	RNase H	
+PF13655.5	N-terminal domain of reverse transcriptase	
+PF00665.25	Integrase core domain	
+PF05380.12	Pao retrotransposon peptidase	
+PF09299.10	Mu transposase, C-terminal	
+PF13456.5	Reverse transcriptase-like	
+PF03276.13	Spumavirus gag protein	
+PF07999.10	Retrotransposon hot spot protein	
+PF01359.17	Transposase (partial DDE domain)	
+PF14787.5	GAG-polyprotein viral zinc-finger	
+PF00872.17	Transposase, Mutator family	
+PF13975.5	gag-polyprotein putative aspartyl protease	
+PF01548.16	Transposase	
+PF13333.5	Integrase core domain	
+PF04986.12	Putative transposase	
+PF06817.13	Reverse transcriptase thumb domain	
+PF01385.18	Probable transposase	
+PF12760.6	Transposase zinc-ribbon domain	
+PF13005.6	zinc-finger binding domain of transposase IS66	
+PF13683.5	Integrase core domain	
+PF16771.4	Regulator of Ty1 transposition protein 107 BRCT domain	
+PF13917.5	Zinc knuckle	
+PF03004.13	Plant transposase (Ptta/En/Spm family)	
+PF14372.5	Domain of unknown function (DUF4413)	
+PF10683.8	Hermes transposase DNA-binding domain	
+PF00540.17	gag gene protein p17 (matrix protein)	
+PF01498.17	Transposase	
+PF07282.10	Putative transposase DNA-binding domain	
+PF01526.16	Tn3 transposase DDE domain	
+PF03108.14	MuDR family transposase	
+PF13022.5	Helix-turn-helix of insertion element transposase	
+PF06815.12	Reverse transcriptase connection domain	
+PF13963.5	Transposase-associated domain	
+PF13837.5	Myb/SANT-like DNA-binding domain	
+PF02337.16	Retroviral GAG p10 protein	
+PF02371.15	Transposase IS116/IS110/IS902 family	
+PF03184.18	DDE superfamily endonuclease	
+PF13340.5	Putative transposase of IS4/5 family (DUF4096)	
+PF13542.5	Helix-turn-helix domain of transposase family ISL3	
+PF14223.5	gag-polypeptide of LTR copia-type	
+PF04693.11	Archaeal putative transposase ISC1217	
+PF14244.5	gag-polypeptide of LTR copia-type	
+PF14690.5	zinc-finger of transposase IS204/IS1001/IS1096/IS1165	
+PF01527.19	Transposase	
+PF13737.5	Transposase DDE domain	
+PF07727.13	Reverse transcriptase (RNA-dependent DNA polymerase)	
+PF14529.5	Endonuclease-reverse transcriptase	
+PF04236.14	Tc5 transposase C-terminal domain	
+PF16770.4	Regulator of Ty1 transposition protein 107 BRCT domain	
+PF03400.12	IS1 transposase	
+PF12017.7	Transposase protein	
+PF13006.6	Insertion element 4 transposase N-terminal	
+PF03732.16	Retrotransposon gag protein	
+PF13952.5	Domain of unknown function (DUF4216)	
+PF01710.15	Transposase	
+PF13843.5	Transposase IS4	
+PF03050.13	Transposase IS66 family	
+PF16828.4	GAG-binding domain on surface antigen	
+PF10551.8	MULE transposase domain	
+PF04754.11	Putative transposase, YhgA-like	
