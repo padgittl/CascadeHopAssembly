@@ -48,6 +48,14 @@ python runMummer.py contigPairs.txt primaryContigLengths.txt > launchMummer.sh
 ##### example command -->
 ##### mummerplot -postscript -p longerContigID_vs_shorterContigID longerContigID_vs_shorterContigID.mums
 
+########################################################################
+##### Run mummer on primary contig and FALCON-Unzip haplotig pairs #####
+########################################################################
+
+python prepareLASTZCommandsHaplotigs.py haplotigFileList.txt > launchHaplotigLASTZ.sh
+
+	##### haplotigFileList.txt --> contains list of haplotig fasta file names
+
 ###########################
 ##### processLASTZ.pl #####
 ###########################
