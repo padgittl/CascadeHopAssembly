@@ -64,6 +64,15 @@ outputFile --> clusters.txt
 
 python deduplicateContigs.py clusters.txt primaryContigLengths.txt lastzOutputFileList.txt purge_haplotigs_lastzOutputFileList.txt listOfPrimaryContigs.txt listOfHaplotigs.txt curated.contig_associations.log outBaseName
 
+##### NOTE --> Some paths to files will need to be modified within script
+##### example --> paths2FastaFiles/
+##### example --> path2MummerFiles/
+##### example --> path2PurgeHapsMummerFiles/
+
+##### create dir before running --> 
+##### mkdir MummerplotHaplotig/ 
+##### mkdir Mummerplot/
+
 # curated.contig_associations.log --> output from purge_haplotigs
 
 outputFiles --> 

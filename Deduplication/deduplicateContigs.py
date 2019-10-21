@@ -140,7 +140,7 @@ def readClusterFile(clusterFile):
     return clusterDict
 
 def readLASTZFiles(lastzOutputFileList,clusterDict,coords,scores,label):
-    #/nfs0/Hendrix_Lab/Hops/LASTZ/version6/above1_hsp20000/LASTZFiles/000028F_vs_000011F_lastzMinusStrand.txt
+    #path2/LASTZFiles/000028F_vs_000011F_lastzMinusStrand.txt
     lastzPattern = re.compile('LASTZFiles/(.*?)_vs_(.*?)_lastz')
     with open(lastzOutputFileList,'r') as F:
         for line in F:
@@ -577,7 +577,8 @@ def printClusters(clusterList):
         COUNT += 1
 
 def plotMummerFigure(queryID,refID):
-    path = "/nfs0/Hendrix_Lab/Hops/Genome/Cascade/lastzPrimarySymLinks"
+    # creates new mummer and mummerplot files on the fly
+    path = "path2FastaFiles"
     Q = path + "/" + queryID  + ".fa"; 
     R = path + "/" + refID + ".fa"; 
     prefix = queryID + "_vs_" + refID
@@ -587,9 +588,9 @@ def plotMummerFigure(queryID,refID):
 def getMumsCoverageDensity(primaryID,associateID,source):
     # build mums file name
     if source == 'blast':
-        mumsFile = "/nfs0/Hendrix_Lab/Hops/LASTZ/version6/above1_hsp20000/Mummerplot/"+primaryID+"_vs_"+associateID+".mums"
+        mumsFile = "/path2MummerFiles/Mummerplot/"+primaryID+"_vs_"+associateID+".mums"
     elif source == 'purgehap':
-        mumsFile = "/nfs0/Hendrix_Lab/Hops/LASTZ/versionPurgeHaps/Mummerplot/"+primaryID+"_vs_"+associateID+".mums"
+        mumsFile = "/path2PurgeHapsMummerFiles/Mummerplot/"+primaryID+"_vs_"+associateID+".mums"
     else:
         print "unknown file"
         sys.exit()
