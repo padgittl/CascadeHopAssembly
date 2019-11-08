@@ -1,8 +1,6 @@
 import sys, re, os
 from Bio import SeqIO
 from Bio.Seq import Seq
-import svgwrite
-from svgwrite import cm, mm
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
@@ -10,6 +8,10 @@ import numpy as np
 import matplotlib.path as mpath
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
+
+sys.path.append('/nfs0/BB/Hendrix_Lab/Hops/svgwrite/svgwrite-1.2.1/')
+import svgwrite
+from svgwrite import cm, mm
 
 ###############
 # SUBROUTINES #
@@ -61,37 +63,18 @@ def readLinkageMapFile(linkageMapFile,lenDict,linkageGroupValue):
     linkageGroupTotalLen = 0
     with open(linkageMapFile,'r') as QTL:
         for line in QTL:
-            # Contig_Position,Lkgrp,pos(cM)
             if not line.startswith('Marker'):
-                #if not line.startswith('Contig_Position'):
                 line = line.strip().split(',')
                 contigPos = line[0]
-                # 578_221439F
                 getShortenedContigID = re.search('(.+)_',contigPos)
                 shortenedContigID = getShortenedContigID.group(1)
                 contigID = "0" * (6-len(str(shortenedContigID))) + str(shortenedContigID) + "F"
                 linkageGroup = line[1]
                 pos_cM = line[2]
-                #print contigID
                 if linkageGroup == linkageGroupValue:
-                    # lnkGrp6
-                    #if 842 <= float(pos_cM) and float(pos_cM) <= 995:
+                    # linkage group 6
                     if 840 <= float(pos_cM) and float(pos_cM) <= 857:
-                    #if 842 <= float(pos_cM) and float(pos_cM) <= 859:
-                    #if 449 <= float(pos_cM) and float(pos_cM) <= 459:
-                        # lnkGrp9
-                        #if 40 < float(pos_cM) and float(pos_cM) <= 43.73357591:
-                        # if 20 < float(pos_cM) and float(pos_cM) < 26:
-                        #if 10 < float(pos_cM) and float(pos_cM) < 50:
-                        # lnkGrp10
-                        #if 20 < float(pos_cM) and float(pos_cM) < 25:
-                        #if 41 < float(pos_cM) and float(pos_cM) < 44:
-                        #if 48.5 < float(pos_cM) and float(pos_cM) <= 54:
-                        #if float(pos_cM) < 4:
-                        #if float(pos_cM) < 10:
-                        #if float(pos_cM) < 19.890964 and 11.6930311 < float(pos_cM):
                         if contigID in lenDict:
-                            #print contigID,pos_cM
                             contigLen = lenDict[contigID]
                             linkageGroupTotalLen += contigLen
                             linkageMapList.append((contigID,linkageGroup,float(pos_cM)))
@@ -108,7 +91,6 @@ def drawPrimaryContigs(linkageMapList,lenDict,scaleFactor,linkageGroupTotalLen,m
 
     scaledMegabase = (float(1000000) / scaleFactor)
     megabaseScaleBar = fig.add(fig.rect((0,30), (scaledMegabase,5),fill='black',stroke='black',stroke_width='0.5'))
-    #megabaseScaleBar = fig.add(fig.rect((0,-300), (10,5),fill='black',stroke='black',stroke_width='1'))
     for primaryID,linkageGroup,pos_cM in linkageMapList:
         if primaryID in lenDict:
             primaryContigLen = lenDict[primaryID]
@@ -119,7 +101,6 @@ def drawPrimaryContigs(linkageMapList,lenDict,scaleFactor,linkageGroupTotalLen,m
             primaryScaledLen = primaryScaledStop - primaryScaledStart
             fig.add(fig.rect((primaryScaledStart,0), (primaryScaledLen,20),fill='#2166ac',stroke='black',stroke_width='0.5'))
             primaryCoordList.append((primaryID,primaryContigStart,primaryContigStop))
-            #print primaryID
     fig.save()
     return(primaryCoordList,fig)
 
@@ -138,8 +119,6 @@ def getHapCoords(primaryCoordList,fig,hapLenDict,contigMapDict,scaleFactor):
                 scaledHapLen = scaledHapStop - scaledHapStart
                 hapCoordList.append((primaryID,hapID,scaledHapStart,scaledHapStop,scaledHapLen,source))
                 print primaryID,hapID,scaledHapStart,scaledHapStop,scaledHapLen,source
-                #print primaryID
-                #print primaryID,hapID
     hapCoordList.sort(key=lambda x:x[4], reverse=True)
     return(hapCoordList,fig)
 
@@ -161,27 +140,18 @@ def getMaxCountValue(countArray,start,stop):
     return(maxValue)
 
 def drawHaplotigs(countArray,hapCoordList,fig,megabaseMultiplier):
-    # yScalingFactor = 10
     yScalingFactor = -25
-    #yScalingFactor = 50
     for primaryID,hapID,scaledHapStart,scaledHapStop,scaledHapLen,source in hapCoordList:
         maxCount = getMaxCountValue(countArray,scaledHapStart,scaledHapStop)
-        #print primaryID,hapID,scaledHapStart,scaledHapStop,scaledHapLen,maxCount*yScalingFactor,source, maxCount
-        #print countArray
         if source == "FALCON-unzip":
-            #fig.add(fig.rect((scaledHapStart,maxCount*yScalingFactor-25), (scaledHapLen,20),fill='#b2182b',stroke='black',stroke_width='0.5')) 
             fig.add(fig.rect((scaledHapStart,maxCount*yScalingFactor-30), (scaledHapLen,20),fill='#b2182b',stroke='black',stroke_width='0.5'))
         if source == "LASTZ":
-            #fig.add(fig.rect((scaledHapStart,maxCount*yScalingFactor-25), (scaledHapLen,20),fill='#f4a582',stroke='black',stroke_width='0.5'))
             fig.add(fig.rect((scaledHapStart,maxCount*yScalingFactor-30), (scaledHapLen,20),fill='#f4a582',stroke='black',stroke_width='0.5')) 
         if source == "purgehaplotigs":
-            #fig.add(fig.rect((scaledHapStart,maxCount*yScalingFactor-25), (scaledHapLen,20),fill='#f4a582',stroke='black',stroke_width='0.5')) 
             fig.add(fig.rect((scaledHapStart,maxCount*yScalingFactor-30), (scaledHapLen,20),fill='#f4a582',stroke='black',stroke_width='0.5'))
         updatedMaxCount = maxCount + 1
         countArray = getPosCount(countArray,scaledHapStart,scaledHapStop,updatedMaxCount)
-        #print countArray
         maxCount = getMaxCountValue(countArray,scaledHapStart,scaledHapStop)
-        #print primaryID,hapID,scaledHapStart,scaledHapStop,scaledHapLen,maxCount*yScalingFactor,source,maxCount
     fig.save()
     return(fig)
 
@@ -213,7 +183,6 @@ def getHopGeneCoords(primaryCoordList,geneData,scaleFactor):
                 scaledGeneStop = updatedGeneStop / scaleFactor
                 scaledGeneLen = scaledGeneStop - scaledGeneStart
                 genePositionList.append((primaryID,geneID,strand,updatedGeneStart,updatedGeneStop,scaledGeneStart,scaledGeneStop,scaledGeneLen))
-                #print primaryID,scaledGeneStart,scaledGeneStop,scaledGeneLen
     genePositionList.sort(key=lambda x:x[5], reverse=True)
     return(genePositionList)
 
@@ -223,16 +192,12 @@ def computeGeneDensity(genePositionList,linkageGroupTotalLen,windowSize,scaleFac
     scaledWindow = windowSize / scaleFactor
     for i in range(0,scaledLinkageGroupTotalLen,scaledWindow):
         geneCount = 0
-        #position = float(i + scaledWindow)
-        #position = float(i)
         position = float(i) + (scaledWindow / 2)
         for primaryID,geneID,strand,updatedGeneStart,updatedGeneStop,scaledGeneStart,scaledGeneStop,scaledGeneLen in genePositionList:
             if i <= scaledGeneStart and scaledGeneStart <= i + scaledWindow:
                 geneCount += 1
         geneDensity = float(geneCount) * megabaseMultiplier
         geneDensityList.append((position,geneDensity))
-        #print primaryID,geneDensity
-        #print position,geneCount,geneDensity,scaledMegabaseWindow
     return(geneDensityList)
 
 def read_LTR_GFF_file(LTR_GFF_file):
@@ -272,12 +237,10 @@ def get_LTR_density(ltrPositionList,linkageGroupTotalLen,windowSize,scaleFactor,
     scaledMegabaseWindow = (windowSize * megabaseMultiplier) / scaleFactor
     for i in range(0,scaledLinkageGroupTotalLen,scaledWindow):
         ltrCount = 0
-        #position = float(i + scaledWindow)
         position = float(i)
         for primaryID,LTR_type,scaledLTRStart,scaledLTRStop,scaledLTRLen in ltrPositionList:
             if i <= scaledLTRStart and scaledLTRStart <= i + scaledWindow:
                 ltrCount += 1
-        #ltrDensity = float(ltrCount) / windowSize
         ltrDensity = float(ltrCount) * megabaseMultiplier
         ltrDensityList.append((position,ltrDensity))
     return(ltrDensityList)
@@ -304,8 +267,6 @@ def createBarAndLineGraph(geneDensityList,ltrDensityList,windowSize,scaleFactor,
         ax1.spines['left'].set_color('#d6604d')
         ax1.spines['right'].set_color('black')
         ax1.tick_params(axis='y', colors='#d6604d')
-        #handles1, labels1 = ax1.get_legend_handles_labels()
-        #ax1.legend(handles1, labels)
     ax2 = ax1.twinx()
     for j in range(len(geneDensityArray)-1):
         position,geneDensity = geneDensityArray[j]
@@ -315,19 +276,10 @@ def createBarAndLineGraph(geneDensityList,ltrDensityList,windowSize,scaleFactor,
         ax2.spines['left'].set_color('#d6604d')
         ax2.spines['right'].set_color('black')
         ax2.tick_params(axis='y', colors='black')
-        #handles2, labels2 = ax2.get_legend_handles_labels()
-        #print handles2,labels2
-    #plt.box(False)
-
-    #legend_hetValues = mlines.Line2D([], [], color='#4393c3', marker='o',markersize=6,linestyle="None",label='Heterozygosity values')
-    #legend_avgHet = mlines.Line2D([], [], color='black',marker='o',markersize=6,label='Average heterozygosity')
-    #plt.legend(handles=[legend_avgHet,legend_hetValues], frameon=False, ncol=2, loc='upper center', bbox_to_anchor=(0.5,-0.1))
 
     legend_genes = mlines.Line2D([], [], color='black', marker='o',markersize=6,label='Gene density')
     legend_LTR = mlines.Line2D([], [], color='#d6604d', marker='s',linestyle="None",markersize=6, label='LTR density')
-    #legend_LTR = mpatches.Patch(color='#d6604d', label='LTR density')
     plt.legend(handles=[legend_genes,legend_LTR], frameon=False, ncol=2, loc='upper center', bbox_to_anchor=(0.5,-0.1))
-    #plt.legend(handles=[LTR_patch, gene_patch], frameon=False, fontsize='6', ncol=2, loc='upper center', bbox_to_anchor=(0.5,-0.1))
     plt.savefig("gene_repeat_density_lnkGrp" + str(linkageGroupValue) + "_" + overlappingHaplotigThreshold + ".svg", bbox_inches = 'tight', pad_inches=0)
 
 def read_SNP_file(snpFile,primaryCoordList):
@@ -369,12 +321,9 @@ def get_SNP_density(snpPositionList,linkageGroupTotalLen,windowSize,scaleFactor,
                 snpCount += 1
                 heterozygositySum += heterozygosityValue
         if snpCount > 1:
-            # scale to actual window size!
-            #snpDensity = float(snpCount) / windowSize
             snpDensity = float(snpCount) * megabaseMultiplier
             heterozygosityDensity = float(heterozygositySum) / snpCount
             hetDensityList.append((position,heterozygosityDensity,snpDensity))
-            #print position,heterozygositySum,snpCount,heterozygosityDensity,snpCount,windowSize,snpDensity
     return(hetDensityList)
 
 def drawSNPs(snpPositionList,hetDensityList,fig,scaleFactor,megabaseMultiplier,linkageGroupTotalLen,linkageGroupValue,overlappingHaplotigThreshold):
@@ -390,9 +339,6 @@ def drawSNPs(snpPositionList,hetDensityList,fig,scaleFactor,megabaseMultiplier,l
     HPC_patch = mpatches.Patch(color='#f4a582', label='Homologous primary contigs')
     haplotigPatch = mpatches.Patch(color='#b2182b', label='FALCON-Unzip haplotigs')
 
-    #hetPatch = mpatches.Patch(color='#4393c3', label='Heterozygosity values')
-    #avgHetPatch = mpatches.Patch(color='black', label='Average heterozygosity')
-
     scaledWindow = float(windowSize) / scaleFactor
     scaledLinkageGroupTotalLen = linkageGroupTotalLen / scaleFactor
     hetDensityArray = np.array(hetDensityList)
@@ -406,7 +352,6 @@ def drawSNPs(snpPositionList,hetDensityList,fig,scaleFactor,megabaseMultiplier,l
         ax1.spines['left'].set_color('#4393c3')
         ax1.spines['right'].set_color('black')
         ax1.tick_params(axis='y', colors='#4393c3')
-        #ax1.margins(0,0.6)
     ax2 = ax1.twinx()
     for i in range(len(hetDensityArray)-1):
         position,hetDensity,snpDensity = hetDensityArray[i]
@@ -416,11 +361,9 @@ def drawSNPs(snpPositionList,hetDensityList,fig,scaleFactor,megabaseMultiplier,l
         ax2.spines['left'].set_color('#4393c3')
         ax2.spines['right'].set_color('black')
         ax2.tick_params(axis='y', colors='black')
-        #ax2.margins(0,0.6)
     legend_hetValues = mlines.Line2D([], [], color='#4393c3', marker='o',markersize=6,linestyle="None",label='Heterozygosity values')
-    #legend_hetValues = mpatches.Patch(color='#4393c3', label='Heterozygosity values')
     legend_avgHet = mlines.Line2D([], [], color='black',marker='o',markersize=6,label='Average heterozygosity')
-    # fontsize='6'
+
     plt.legend(handles=[legend_avgHet,legend_hetValues], frameon=False, ncol=2, loc='upper center', bbox_to_anchor=(0.5,-0.1))
     plt.savefig("snp_density_lnkGrp" + str(linkageGroupValue) + "_" + overlappingHaplotigThreshold + ".svg", bbox_inches = 'tight', pad_inches=0)
 
@@ -469,12 +412,9 @@ if filterOverlapsBoolean == 'yes':
     baseName,overlappingHaplotigThreshold = overlappingHaplotigFileBaseName.split('_')
 else:
     FILTER_OVERLAPS = False
-    #overlapHaplotigDict = {}
     contigMapDict = readContigMapFile_noFiltering(contigMapFile)
     overlappingHaplotigThreshold = "noHapFilter"
 
-
-# contigMapDict = readContigMapFile(contigMapFile,overlapHaplotigDict)
 primaryLenDict = readContigLengthsFile(contigLengthsFile)
 hapLenDict = readContigLengthsFile(haplotigLengthsFile)
 linkageMapList,linkageGroupTotalLen = readLinkageMapFile(linkageMapFile,primaryLenDict,linkageGroupValue)
