@@ -4,6 +4,8 @@
 
 python filterNNNsFromVCF.py geneModels.gff variants.vcf contigLengths.txt
 
+## format of contigLengths.txt is 'contigID\scontigLength'
+
 
 ###########################
 ## calculateErrorRate.py ##
