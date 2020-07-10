@@ -49,7 +49,7 @@ python createStackedBarChart.py hop.stackedBarChartValues.txt 3711963939 arabido
 
 # hop assembly size --> 3711963939
 # arabidopsis assembly size --> 119668634
-# maizeAssembly size --> 2075000000
+# maize assembly size --> 2075000000
 
 
 
