@@ -2,7 +2,10 @@
 ##### createGenomePlot.py #####
 ###############################
 
-python createGenomePlot.py heterozygosity.csv repeatFilteredHopCascadeGeneModels.gff linkageMap.csv primaryContigLengths.txt primaryAssembly_contigMap.txt associateContigLengths.txt linkageGroupNumber ltrs.gff overlapFilteredPrimaryAssembly_contigMap.txt <'yes' or 'no' for overlap filtering>
+# the purpose of this script is to visualize ordered primary and associate contigs, gene, LTR, SNP, and average heterozygosity values for an entire linkage group. Primary contigs are ordered by linkage map genetic positions
+
+python createGenomePlot.py primaryAssembly_contigMap.txt primaryContigLengths.txt associateContigLengths.txt heterozygosity.csv linkageMap.csv repeatFilteredHopCascadeGeneModels.gff ltrs.gff linkageGroupNumber windowSize
+
 
 # createGenomePlot.py requires svgwrite
 
@@ -11,8 +14,8 @@ Site Number,Site Name,Chromosome,Physical Position,Number of Taxa,Ref,Alt,Major 
 
 # linkageMap.csv information used --> linkage group, contig ID, and linkage position
 
-# primaryContigLengths.txt and associateContigLengths.txt format --> contigID, contigLength
+# primaryContigLengths.txt and associateContigLengths.txt format --> contigID\scontigLength
 
 # primaryAssembly_contigMap.txt (output from deduplicateContigs.py script) format --> primaryContigID, associateContigID, primaryAlignmentStartPos, primaryAlignmentStopPos, source
 
-# overlapFilteredPrimaryAssembly_contigMap.txt --> same format as primaryAssembly_contigMap.txt
+# windowSize is 10000000 (10 Mb)
