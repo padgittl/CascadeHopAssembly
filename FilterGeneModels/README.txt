@@ -70,3 +70,7 @@ python identifyPotentialBacterialGenes.py hop_vs_bacteria.txt bacteria_vs_hop.tx
 
 for f in ../augustusOutputFiles/*gff; do echo python findGenesWithSupportingEvidence.py $f ../filteredAugustusGenes/`basename $f`; done > launch.sh
 
+cat *genesSupportedByEvidence.txt | grep -v "transcriptID" > allGenesSupportedByEvidence.txt
+
+# contig-specific gff files within the directory augustusOutputFiles are the direct output of augustus
+# contig-specific gff files within the directory filteredAugustusGenes are repeat-filtered
