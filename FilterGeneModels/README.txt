@@ -61,3 +61,12 @@ python identifyPotentialBacterialGenes.py hop_vs_bacteria.txt bacteria_vs_hop.tx
 # uniprotBacteriaGenes.fasta contains a set of 334357 genes for bacteria from UniProt
 # queryCoverageMinimumValue set to 75
 
+
+#### GENES WITH EVIDENCE ####
+
+########################################
+## findGenesWithSupportingEvidence.py ##
+########################################
+
+for f in ../augustusOutputFiles/*gff; do echo python findGenesWithSupportingEvidence.py $f ../filteredAugustusGenes/`basename $f`; done > launch.sh
+
