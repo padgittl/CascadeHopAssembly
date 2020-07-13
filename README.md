@@ -1,4 +1,4 @@
-A Draft Phased Assembly of the Diploid Cascade Hop (Humulus lupulus) Genome Reveals Patterns of Selection and Haplotype Variation
+A Draft Phased Assembly of the Diploid Cascade Hop (Humulus lupulus) Genome
 
 ABSTRACT
 
